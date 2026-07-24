@@ -35,8 +35,8 @@ int main() {
 
   points2D vertices2D[] = {};
 
-  int centerX = 40;
-  int centerY = 12;
+  float centerX = 40;
+  float centerY = 12;
 
   float screenX;
   float screenY;
