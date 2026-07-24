@@ -28,11 +28,13 @@ float A, B, C;
 float cubeWidth = 20;
 
 int main() {
+  // 3d points i defined
   points3D vertices3D[8] = {
       {-10, 10, 20}, {10, 10, 20}, {10, -10, 20}, {-10, -10, 20},
 
       {-10, 10, 40}, {10, 10, 40}, {10, -10, 40}, {-10, -10, 40}};
 
+  // the 3d points are converted to a 2d plane
   points2D vertices2D[] = {};
 
   float centerX = 40;
@@ -41,16 +43,19 @@ int main() {
   float screenX;
   float screenY;
 
+  // this is the projection math
   for (int i = 0; i < 8; i++) {
     screenX = (((vertices3D[i].x) * FOCAL_LENGTH) / vertices3D[i].z) + centerX;
     vertices2D[i].x = screenX;
 
-    screenY = (((centerY - (vertices3D[i].y)) * FOCAL_LENGTH) / vertices3D[i].z);
+    screenY =
+        (((centerY - (vertices3D[i].y)) * FOCAL_LENGTH) / vertices3D[i].z);
+
     vertices2D[i].y = screenY;
   }
 
   for (;;) {
-  printf("\x1b[2J");
+    printf("\x1b[2J");
   }
   printf("");
 
