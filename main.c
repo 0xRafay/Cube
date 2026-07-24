@@ -9,6 +9,9 @@
 /*
  * the 3D position of a point A that is to be projected
  */
+
+#define FOCAL_LENGTH 200
+
 typedef struct {
   float x;
   float y;
@@ -39,10 +42,10 @@ int main() {
   float screenY;
 
   for (int i = 0; i < 8; i++) {
-    screenX = (((vertices3D[i].x) * 200) / vertices3D[i].z) + centerX;
+    screenX = (((vertices3D[i].x) * FOCAL_LENGTH) / vertices3D[i].z) + centerX;
     vertices2D[i].x = screenX;
 
-    screenY = (((centerY - (vertices3D[i].y)) * 200) / vertices3D[i].z);
+    screenY = (((centerY - (vertices3D[i].y)) * FOCAL_LENGTH) / vertices3D[i].z);
     vertices2D[i].y = screenY;
   }
 
