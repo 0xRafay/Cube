@@ -15,7 +15,7 @@
 #define HEIGHT 40
 
 #define CUBE_WIDTH 20
-#define HORZ_OFFSET -2 * CUBE_WIDTH
+#define HORZ_OFFSET 0.0F
 
 #define INCREMENT 0.6F
 
