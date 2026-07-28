@@ -99,7 +99,7 @@ int main() {
         projectionOnSurface(cubeX, cubeY, CUBE_WIDTH, '@');
         projectionOnSurface(CUBE_WIDTH, cubeY, cubeX, '$');
         projectionOnSurface(-CUBE_WIDTH, cubeY, -cubeX, '~');
-        projectionOnSurface(-cubeX, cubeY, CUBE_WIDTH, '#');
+        projectionOnSurface(-cubeX, cubeY, -CUBE_WIDTH, '#');
         projectionOnSurface(cubeX, -CUBE_WIDTH, -cubeY, ';');
         projectionOnSurface(cubeX, CUBE_WIDTH, cubeY, '+');
       }
