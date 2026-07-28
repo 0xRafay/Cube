@@ -107,8 +107,8 @@ int main() {
     for (int k = 0; k < WIDTH * HEIGHT; k++) {
       putchar(k % WIDTH ? buffer[k] : 10);
     }
-    A += 0.05F;
-    B += 0.05F;
+    A += 0.03F;
+    B += 0.02F;
     C += 0.01F;
 
     usleep(8000 * 2);
