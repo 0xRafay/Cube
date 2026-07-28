@@ -27,6 +27,7 @@ typedef struct {
 typedef struct {
   float x;
   float y;
+  float z; // depth on 2D
 } points2D;
 
 int main() {
