@@ -90,19 +90,29 @@ points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ, int ch) {
 
 int main() {
   printf("\x1b[2J");
-  memset(buffer, backgroundASCIICode, (size_t)WIDTH * HEIGHT);
-  memset(zBuffer, 0, (size_t)WIDTH * HEIGHT * 4);
 
   for (;;) {
+    memset(buffer, backgroundASCIICode, (size_t)WIDTH * HEIGHT);
+    memset(zBuffer, 0, (size_t)WIDTH * HEIGHT * 4);
     for (float cubeX = -CUBE_WIDTH; cubeX < CUBE_WIDTH; cubeX += INCREMENT) {
       for (float cubeY = -CUBE_WIDTH; cubeY < CUBE_WIDTH; cubeY += INCREMENT) {
         projectionOnSurface(cubeX, cubeY, CUBE_WIDTH, '@');
+        projectionOnSurface(CUBE_WIDTH, cubeY, cubeX, '$');
+        projectionOnSurface(-CUBE_WIDTH, cubeY, -cubeX, '~');
+        projectionOnSurface(-cubeX, cubeY, CUBE_WIDTH, '#');
+        projectionOnSurface(cubeX, -CUBE_WIDTH, -cubeY, ';');
+        projectionOnSurface(cubeX, CUBE_WIDTH, cubeY, '+');
       }
+    }
+    printf("\x1b[H");
+    for (int k = 0; k < WIDTH * HEIGHT; k++) {
+      putchar(k % WIDTH ? buffer[k] : 10);
     }
     A += 0.05F;
     B += 0.05F;
     C += 0.01F;
+
+    usleep(8000 * 2);
   }
-  usleep(8000 * 2);
   return 0;
 }
