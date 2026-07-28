@@ -35,8 +35,45 @@ struct points3D {
 struct points2D {
   float x;
   float y;
-  float z; // depth on 2D
-} points2D;
+  float depth;
+};
+
+float calculateX(float i, float j, float k) {
+  return ((j * sinf(A)) * (sinf(B) * cosf(C))) -
+         ((k * cosf(A)) * (sinf(B) * cosf(C))) + ((j * cosf(A)) * sinf(C)) +
+         ((k * sinf(A)) * sinf(C)) + ((i * cosf(B)) * cosf(C));
+}
+
+float calculateY(float i, float j, float k) {
+  return ((j * cosf(A)) * cosf(C)) + ((k * sinf(A)) * cosf(C)) -
+         ((j * sinf(A)) * (sinf(B) * sinf(C))) +
+         ((k * cosf(A)) * (sinf(B) * sinf(C))) - ((i * cosf(B)) * sinf(C));
+}
+
+float calculateZ(float i, float j, float k) {
+    return ((k * cosf(A)) * cosf(B)) - ((j * sinf(A)) * cosf(B)) + (i * sinf(B));
+}
+
+points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ) {
+
+  points3D cube = {cubeX, cubeY, cubeZ};
+  points2D projected = {};
+  points3D rotated = {};
+
+  rotated.x = calculateX(cubeX, cubeY, cubeZ);
+  rotated.y = calculateY(cubeX, cubeY, cubeZ);
+  rotated.z = calculateZ(cubeX, cubeY,  cubeZ);
+
+  float ooz = 1.0F / rotated.z;
+
+  projected.x =
+      (WIDTH / 2.0F) + (HORZ_OFFSET) + (PROJECTION_CONSTANT * rotated.x * ooz);
+  projected.y = (HEIGHT / 2.0F) + (PROJECTION_CONSTANT * rotated.y * ooz);
+
+  int idx = ((int)(projected.x) + ((int)projected.y * WIDTH));
+
+  return projected;
+}
 
 int main() {
 
@@ -44,6 +81,7 @@ int main() {
     printf("\x1b[2J");
     for (float cubeX = -CUBE_WIDTH; cubeX < CUBE_WIDTH; cubeX += INCREMENT) {
       for (float cubeY = -CUBE_WIDTH; cubeY < CUBE_WIDTH; cubeY += INCREMENT) {
+        projectionOnSurface(cubeX, cubeY, CUBE_WIDTH);
       }
     }
     A += 0.05F;
