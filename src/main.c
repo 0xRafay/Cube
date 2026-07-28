@@ -5,7 +5,9 @@
  */
 
 #include <math.h>
+#include <stddef.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 
 // screen dimensions
@@ -25,6 +27,8 @@ float C = 0.0F;
 
 float zBuffer[160 * 44];
 char buffer[160 * 44];
+
+int backgroundASCIICode = '.';
 
 typedef struct points3D points3D;
 typedef struct points2D points2D;
@@ -84,9 +88,11 @@ points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ, int ch) {
 }
 
 int main() {
+  printf("\x1b[2J");
+  memset(buffer, backgroundASCIICode, (size_t)WIDTH * HEIGHT);
+  memset(zBuffer, 0, (size_t)WIDTH * HEIGHT * 4);
 
   for (;;) {
-    printf("\x1b[2J");
     for (float cubeX = -CUBE_WIDTH; cubeX < CUBE_WIDTH; cubeX += INCREMENT) {
       for (float cubeY = -CUBE_WIDTH; cubeY < CUBE_WIDTH; cubeY += INCREMENT) {
         projectionOnSurface(cubeX, cubeY, CUBE_WIDTH, '@');
