@@ -14,12 +14,12 @@
 #define WIDTH 160
 #define HEIGHT 40
 
-#define CUBE_WIDTH 20
+#define CUBE_WIDTH 25
 #define HORZ_OFFSET 0.0F
 
-#define INCREMENT 0.6F
+#define INCREMENT 0.8F
 
-#define PROJECTION_CONSTANT 40
+#define PROJECTION_CONSTANT 30
 #define DIST_FROM_CAMERA 100
 
 float A = 0.0F;
@@ -29,7 +29,7 @@ float C = 0.0F;
 float zBuffer[WIDTH * HEIGHT];
 char buffer[WIDTH * HEIGHT];
 
-int backgroundASCIICode = ' ';
+int backgroundASCIICode = '.';
 
 typedef struct points3D points3D;
 typedef struct points2D points2D;
@@ -74,8 +74,8 @@ points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ, int ch) {
 
   float ooz = 1.0F / rotated.z;
 
-  projected.x =
-      (WIDTH / 2.0F) + (HORZ_OFFSET) + (PROJECTION_CONSTANT * rotated.x * ooz);
+  projected.x = (WIDTH / 2.0F) + (HORZ_OFFSET) +
+                (PROJECTION_CONSTANT * rotated.x * ooz * 1.5F);
   projected.y = (HEIGHT / 2.0F) + (PROJECTION_CONSTANT * rotated.y * ooz);
 
   int idx = ((int)(projected.x) + ((int)projected.y * WIDTH));
@@ -105,7 +105,7 @@ int main() {
     }
     printf("\x1b[H");
     for (int k = 0; k < WIDTH * HEIGHT; k++) {
-      putchar(k % WIDTH ? buffer[k] : 10);
+      putchar((k + 1) % WIDTH ? buffer[k] : 10);
     }
     A += 0.03F;
     B += 0.02F;
