@@ -20,6 +20,7 @@
 #define INCREMENT 0.6F
 
 #define PROJECTION_CONSTANT 40
+#define DIST_FROM_CAMERA 100
 
 float A = 0.0F;
 float B = 0.0F;
@@ -69,7 +70,7 @@ points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ, int ch) {
 
   rotated.x = calculateX(cubeX, cubeY, cubeZ);
   rotated.y = calculateY(cubeX, cubeY, cubeZ);
-  rotated.z = calculateZ(cubeX, cubeY, cubeZ);
+  rotated.z = calculateZ(cubeX, cubeY, cubeZ) + DIST_FROM_CAMERA;
 
   float ooz = 1.0F / rotated.z;
 
