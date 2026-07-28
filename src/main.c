@@ -29,7 +29,7 @@ float C = 0.0F;
 float zBuffer[WIDTH * HEIGHT];
 char buffer[WIDTH * HEIGHT];
 
-int backgroundASCIICode = '.';
+int backgroundASCIICode = ' ';
 
 typedef struct points3D points3D;
 typedef struct points2D points2D;
