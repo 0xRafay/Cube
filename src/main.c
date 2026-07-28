@@ -26,8 +26,8 @@ float A = 0.0F;
 float B = 0.0F;
 float C = 0.0F;
 
-float zBuffer[160 * 40];
-char buffer[160 * 40];
+float zBuffer[WIDTH * HEIGHT];
+char buffer[WIDTH * HEIGHT];
 
 int backgroundASCIICode = '.';
 
@@ -90,7 +90,6 @@ points2D projectionOnSurface(float cubeX, float cubeY, float cubeZ, int ch) {
 
 int main() {
   printf("\x1b[2J");
-
   for (;;) {
     memset(buffer, backgroundASCIICode, (size_t)WIDTH * HEIGHT);
     memset(zBuffer, 0, (size_t)WIDTH * HEIGHT * 4);
