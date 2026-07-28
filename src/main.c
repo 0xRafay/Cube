@@ -26,8 +26,8 @@ float A = 0.0F;
 float B = 0.0F;
 float C = 0.0F;
 
-float zBuffer[160 * 44];
-char buffer[160 * 44];
+float zBuffer[160 * 40];
+char buffer[160 * 40];
 
 int backgroundASCIICode = '.';
 
